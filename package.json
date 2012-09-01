@@ -1,0 +1,13 @@
+{
+  "name": "hello-world",
+  "description": "hello world test app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.0.0rc3"
+    , "ejs": ">= 0.0.1"
+    , "less": ">= 0.0.1"
+    , "socket.io": ">= 0.0.1"
+    , "zlib": ">=0.0.1"
+  }
+}
