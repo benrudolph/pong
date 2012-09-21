@@ -7,5 +7,4 @@ require([
     "/js/game/paddle.js",
     ], function() {
   var game = new Pong.Game();
-  //game.run();
 });

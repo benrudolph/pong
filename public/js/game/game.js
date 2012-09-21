@@ -3,6 +3,7 @@ window.Pong.Game = (function() {
 
   var KEY_UP = 38;
   var KEY_DOWN = 40;
+  var SPACE_BAR = 32;
 
   var Game = function() {
     this.socket = io.connect("/");
@@ -90,6 +91,10 @@ window.Pong.Game = (function() {
           playerId: this.playerId,
           direction: Pong.Paddle.DIRECTION.DOWN
         });
+        break;
+      case SPACE_BAR:
+        e.preventDefault();
+        this.socket.emit("start", {})
         break;
     }
   }
