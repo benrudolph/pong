@@ -17,7 +17,11 @@ app.configure(function() {
 });
 
 app.get("/", function(req, res) {
-  res.render('index');
+  res.render("home")
+});
+
+app.get("/game", function(req, res) {
+  res.render("index");
 });
 
 /*app.get(/\/css\/(\w+).css/, function(req, res) {
