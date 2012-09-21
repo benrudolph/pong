@@ -8,6 +8,7 @@ window.Pong.Game = (function() {
     this.socket = io.connect("/");
     this.canvas = document.getElementById("pong")
     this.paddles = [];
+    this.ball = null;
     document.addEventListener("keydown", this._onKeydown.bind(this));
     this.socket.on("assignId", this._onAssignId.bind(this));
     this.socket.on("update", this._onUpdate.bind(this));
@@ -19,6 +20,7 @@ window.Pong.Game = (function() {
     for (var i = 0; i < this.paddles.length; i++) {
       this.paddles[i].draw();
     }
+    this.ball.draw();
   }
 
   Game.prototype._onAssignId = function(data) {
@@ -29,6 +31,7 @@ window.Pong.Game = (function() {
   Game.prototype._onUpdate = function(data) {
     this.paddles = this._resolvePaddleData(data.paddles);
     this.players = this._resolvePlayerData(data.players);
+    this.ball = this._resolveBallData(data.ball);
     this._draw();
   }
 
@@ -39,12 +42,22 @@ window.Pong.Game = (function() {
     for(var i = 0; i < paddleData.length; i++) {
       paddle = new Pong.Paddle(this.canvas);
       paddle.y = paddleData[i].y;
+      paddle.x = paddleData[i].side === Pong.Paddle.SIDE.LEFT ? 0 : this.canvas.width - paddle.width
+      paddle.side = paddleData[i].side
       paddle.color = paddleData[i].color;
 
       paddles.push(paddle);
     }
 
     return paddles;
+  }
+
+  Game.prototype._resolveBallData = function(ballData) {
+    ball = new Pong.Ball(this.canvas)
+    ball.x = ballData.x
+    ball.y = ballData.y
+    ball.radius = ballData.radius
+    return ball
   }
 
   Game.prototype._resolvePlayerData = function(playerData) {
