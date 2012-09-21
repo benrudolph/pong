@@ -9,6 +9,7 @@ window.Pong.Game = (function() {
     this.socket = io.connect("/");
     this.canvas = document.getElementById("pong")
     this.paddles = [];
+    this.players = [];
     this.ball = null;
     document.addEventListener("keydown", this._onKeydown.bind(this));
     this.socket.on("assignId", this._onAssignId.bind(this));
@@ -21,6 +22,9 @@ window.Pong.Game = (function() {
     for (var i = 0; i < this.paddles.length; i++) {
       this.paddles[i].draw();
     }
+    for (var i = 0; i < this.players.length; i++) {
+      this.players[i].draw();
+    }
     this.ball.draw();
   }
 
@@ -30,6 +34,7 @@ window.Pong.Game = (function() {
   }
 
   Game.prototype._onUpdate = function(data) {
+    $("#scoreboard").html("")
     this.paddles = this._resolvePaddleData(data.paddles);
     this.players = this._resolvePlayerData(data.players);
     this.ball = this._resolveBallData(data.ball);

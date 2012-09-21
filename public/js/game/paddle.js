@@ -13,7 +13,7 @@ window.Pong.Paddle = (function() {
 
   Paddle.SIDE = { LEFT: 0, RIGHT: 1 }
 
-  Paddle.prototype.draw = function () {
+  Paddle.prototype.draw = function() {
     var context = this.canvas.getContext("2d")
     context.fillStyle = this.color;
     context.strokeStyle = this.color;
