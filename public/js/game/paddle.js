@@ -4,8 +4,8 @@ window.Pong.Paddle = (function() {
     this.canvas = canvas
     this.y = 250
     this.color = "FFFFFF"
-    this.width = 30
-    this.height = 50
+    this.width = 0
+    this.height = 0
     this.x = 0
   }
 

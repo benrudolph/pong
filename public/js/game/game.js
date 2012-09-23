@@ -10,6 +10,7 @@ window.Pong.Game = (function() {
     this.canvas = document.getElementById("pong")
     this.paddles = [];
     this.players = [];
+    this.powerups = [];
     this.ball = null;
     document.addEventListener("keydown", this._onKeydown.bind(this));
     this.socket.on("assignId", this._onAssignId.bind(this));
@@ -25,6 +26,9 @@ window.Pong.Game = (function() {
     for (var i = 0; i < this.players.length; i++) {
       this.players[i].draw();
     }
+    for (var i = 0; i < this.powerups.length; i++) {
+      this.powerups[i].draw();
+    }
     this.ball.draw();
   }
 
@@ -37,8 +41,26 @@ window.Pong.Game = (function() {
     $("#scoreboard").html("")
     this.paddles = this._resolvePaddleData(data.paddles);
     this.players = this._resolvePlayerData(data.players);
+    this.powerups = this._resolvePowerupData(data.powerups);
     this.ball = this._resolveBallData(data.ball);
     this._draw();
+  }
+
+  Game.prototype._resolvePowerupData = function(powerupData) {
+    var powerups = []
+
+    for (var i = 0; i < powerupData.length; i++) {
+      powerup = new Pong.Powerup(this.canvas)
+      powerup.x = powerupData[i].x
+      powerup.y = powerupData[i].y
+      powerup.width = powerupData[i].width
+      powerup.height = powerupData[i].height
+      powerup.type = powerupData[i].type
+
+      powerups.push(powerup)
+    }
+
+    return powerups
   }
 
   Game.prototype._resolvePaddleData = function(paddleData) {
@@ -51,6 +73,8 @@ window.Pong.Game = (function() {
       paddle.x = paddleData[i].side === Pong.Paddle.SIDE.LEFT ? 0 : this.canvas.width - paddle.width
       paddle.side = paddleData[i].side
       paddle.color = paddleData[i].color;
+      paddle.width = paddleData[i].width;
+      paddle.height = paddleData[i].height;
 
       paddles.push(paddle);
     }

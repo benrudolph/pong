@@ -5,6 +5,7 @@ require([
     "/js/game/player.js",
     "/js/game/ball.js",
     "/js/game/paddle.js",
+    "/js/game/powerup.js",
     ], function() {
   var game = new Pong.Game();
 });
