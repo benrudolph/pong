@@ -8,10 +8,15 @@
       Welcome to the Wonderful World of Pong
     </div>
     <div id="content">
-      <div id="games"></div>
+      <div id="games">
+      <% for (var i = 0; i < games.length; i++) {%>
+        <div class="game"><%= games[i] %></div>
+      <% } %>
+      </div>
       <button id="create">Create Game!</button>
       <button id="join">Join Game!</button>
     </div>
   </body>
   <script src="/js/lib/jquery.min.js"></script>
+  <script src="/js/game/home.js"></script>
 </html>

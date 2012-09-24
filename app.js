@@ -2,13 +2,13 @@ var express = require("express")
   , less = require("less")
   , fs = require("fs")
   , io = require("socket.io")
-  , Game = require("./lib/game")
+  , World = require("./lib/world.js")
 
 var app = express(),
     server = require("http").createServer(app),
     io = io.listen(server);
 
-var game = new Game(io);
+var world = new World(io)
 
 app.configure(function() {
   app.set('view engine', 'ejs');
@@ -17,11 +17,12 @@ app.configure(function() {
 });
 
 app.get("/", function(req, res) {
-  res.render("home")
+  res.render("home", { games: world.games.map(function(game){ return game.gameName }) })
 });
 
 app.get("/game", function(req, res) {
   res.render("index");
+  gameName = req.query["gameName"]
 });
 
 /*app.get(/\/css\/(\w+).css/, function(req, res) {

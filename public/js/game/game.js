@@ -13,9 +13,31 @@ window.Pong.Game = (function() {
     this.powerups = [];
     this.ball = null;
     document.addEventListener("keydown", this._onKeydown.bind(this));
+    this.socket.on("connect", this._onConnect.bind(this));
     this.socket.on("assignId", this._onAssignId.bind(this));
     this.socket.on("update", this._onUpdate.bind(this));
+    params = this.getParams()
+    this.gameName = params["gameName"]
   };
+
+  Game.prototype.getParams = function() {
+    var urlParams = {};
+    (function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        while (match = search.exec(query))
+           urlParams[decode(match[1])] = decode(match[2]);
+    })();
+    return urlParams
+  }
+
+  Game.prototype._onConnect = function() {
+    this.socket.emit("game", { gameName: this.gameName, socketId: this.socket.socket.sessionid })
+  }
 
   Game.prototype._draw = function() {
     var context = this.canvas.getContext("2d");
@@ -70,7 +92,7 @@ window.Pong.Game = (function() {
     for(var i = 0; i < paddleData.length; i++) {
       paddle = new Pong.Paddle(this.canvas);
       paddle.y = paddleData[i].y;
-      paddle.x = paddleData[i].side === Pong.Paddle.SIDE.LEFT ? 0 : this.canvas.width - paddle.width
+      paddle.x = paddleData[i].x
       paddle.side = paddleData[i].side
       paddle.color = paddleData[i].color;
       paddle.width = paddleData[i].width;
