@@ -3,6 +3,8 @@ $(document).ready(function() {
   $("#create").click(function() {
     var popup = renderPopup()
     $("body").append(popup)
+    $("#popup").css({ "left": ($(document).outerWidth() / 2) - ($("#popup").outerWidth() / 2),
+                      "display": "block" })
   })
 
   $("#join").click(function() {
@@ -24,10 +26,10 @@ $(document).ready(function() {
   var renderPopup = function() {
     html = '<div id="popup">' +
     '<form action="/game" method="GET">' +
-    '<label for="gameName" />' +
-    '<input type="text" name="gameName" id="gameName" />' +
-    '<input type="radio" name="players" value="2" checked="checked">2</input>' +
-    '<input type="submit">Let\'s do it!</input>' +
+    '<div class="input"><label for="gameName">Name:&nbsp;</label>' +
+    '<input type="text" name="gameName" id="gameName" /></div>' +
+    '<div class="input"><input type="radio" name="players" value="2" checked="checked">2</input></div>' +
+    '<div class="input"><input type="submit" value="Let\'s do it!" /></div>' +
     '</form>' +
     '</div>'
     return html

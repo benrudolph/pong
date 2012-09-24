@@ -25,14 +25,14 @@ app.get("/game", function(req, res) {
   gameName = req.query["gameName"]
 });
 
-/*app.get(/\/css\/(\w+).css/, function(req, res) {
+app.get(/\/css\/(\w+).css/, function(req, res) {
   fs.readFile("public/css/" + req.params[0] + ".less", function(e, data) {
     less.render(data.toString("utf8"), function(e, css) {
       res.write(css);
       res.end();
     });
   });
-});*/
+});
 
 var port = process.env.PORT || 3000;
 server.listen(port);

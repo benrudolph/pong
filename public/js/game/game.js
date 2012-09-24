@@ -41,7 +41,8 @@ window.Pong.Game = (function() {
 
   Game.prototype._draw = function() {
     var context = this.canvas.getContext("2d");
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    context.fillStyle = "#FFFFFF"
+    context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     for (var i = 0; i < this.paddles.length; i++) {
       this.paddles[i].draw();
     }
