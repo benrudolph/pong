@@ -1,4 +1,5 @@
 var assert = require("assert")
+var should = require("should")
 var PowerupArray = require("../lib/powerup_array.js")
 var Powerup = require("../lib/powerup.js")
 
@@ -20,8 +21,8 @@ describe("PowerupArray", function() {
   describe("#getPowerupsOfCertainState()", function() {
     it("should return all active powerups", function() {
       var activePowerups = powerupArray.getPowerupsOfCertainState(Powerup.STATE.ACTIVE)
-      assert.equal(1, activePowerups.length);
-      assert.equal(activePowerups[0].state, Powerup.STATE.ACTIVE);
+      should.equal(1, activePowerups.length);
+      should.equal(activePowerups[0].state, Powerup.STATE.ACTIVE);
     })
   })
 
@@ -29,9 +30,9 @@ describe("PowerupArray", function() {
     it("should clean all dead powerups", function() {
       powerupArray.cleanDead()
 
-      assert.equal(2, powerupArray.length)
+      should.equal(2, powerupArray.length)
       for (var i = 0; i < powerupArray.length; i++) {
-        assert.notEqual(Powerup.STATE.DEAD, powerupArray[i].state)
+        should.notEqual(Powerup.STATE.DEAD, powerupArray[i].state)
       }
     })
 
