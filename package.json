@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "pong",
   "description": "hello world test app",
   "version": "0.0.1",
   "private": true,
@@ -9,5 +9,9 @@
     , "less": ">= 0.0.1"
     , "socket.io": ">= 0.0.1"
     , "zlib": ">=0.0.1"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
   }
 }
