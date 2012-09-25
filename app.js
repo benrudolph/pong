@@ -1,7 +1,7 @@
-var express = require("./node_modules/express")
-  , less = require("./node_modules/less")
-  , fs = require("./node_modules/fs")
-  , io = require("./node_modules/socket.io")
+var express = require("express")
+  , less = require("less")
+  , fs = require("fs")
+  , io = require("socket.io")
   , World = require("./lib/world.js")
 
 var app = express(),
