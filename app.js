@@ -8,11 +8,6 @@ var app = express(),
     server = require("http").createServer(app),
     io = io.listen(server);
 
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-});
-
 var world = new World(io)
 
 app.configure(function() {

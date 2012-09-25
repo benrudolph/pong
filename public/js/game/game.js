@@ -92,7 +92,7 @@ window.Pong.Game = (function() {
       powerup.width = powerupData[i].width
       powerup.height = powerupData[i].height
       powerup.type = powerupData[i].type
-      powerup.image = this.imageLibrary.getImage("images/extend_powerup.png")
+      powerup.image = this.imageLibrary.getImage(powerupData[i].source)
 
       powerups.push(powerup)
     }

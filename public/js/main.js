@@ -15,7 +15,9 @@ require([
   var imageLibrary = new ImageLibrary(["images/extend_powerup.png",
                                        "images/ball.png",
                                        "images/paddle_ends.png",
-                                       "images/paddle_body.png"])
+                                       "images/paddle_body.png",
+                                       "images/speed_powerup.png",
+                                       "images/shorten_powerup.png"])
   imageLibrary.load()
   var game = new Pong.Game();
   game.imageLibrary = imageLibrary
