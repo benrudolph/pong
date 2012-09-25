@@ -1,13 +1,12 @@
 window.ImageLibrary = (function() {
   var ImageLibrary = function(sources) {
     this.sources = sources
-    this.images = []
+    this.images = {}
     this.loaded = false
   }
 
   ImageLibrary.prototype.getImage = function(name) {
-    var index = this.sources.indexOf(name)
-    return this.images[index]
+    return this.images[name]
   }
 
   ImageLibrary.prototype.load = function() {
@@ -19,7 +18,7 @@ window.ImageLibrary = (function() {
       img.onload = function() {
         this.loaded = true
       }
-      this.images.push(img)
+      this.images[sources[i]] = img
     }
   }
   return ImageLibrary
