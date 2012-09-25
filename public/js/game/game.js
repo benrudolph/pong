@@ -6,7 +6,7 @@ window.Pong.Game = (function() {
   var SPACE_BAR = 32;
 
   var Game = function() {
-    this.socket = io.connect(window.location.hostname);
+    this.socket = io.connect("/");
     this.canvas = document.getElementById("pong")
     this.paddles = [];
     this.players = [];
