@@ -16,10 +16,15 @@ window.Pong.Game = (function() {
     this.socket.on("connect", this._onConnect.bind(this));
     this.socket.on("assignId", this._onAssignId.bind(this));
     this.socket.on("update", this._onUpdate.bind(this));
+    this.socket.on("gameOver", this._onGameOver.bind(this));
     params = this.getParams()
     this.gameName = params["gameName"]
     this.imageLibrary = null
   };
+
+  Game.prototype._onGameOver = function(playerData) {
+    $("#winner").text("Congrats!" + playerData.playerId + " won!")
+  }
 
   Game.prototype.getParams = function() {
     var urlParams = {};
