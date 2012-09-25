@@ -18,6 +18,7 @@ window.Pong.Game = (function() {
     this.socket.on("update", this._onUpdate.bind(this));
     params = this.getParams()
     this.gameName = params["gameName"]
+    this.imageLibrary = null
   };
 
   Game.prototype.getParams = function() {
@@ -79,6 +80,7 @@ window.Pong.Game = (function() {
       powerup.width = powerupData[i].width
       powerup.height = powerupData[i].height
       powerup.type = powerupData[i].type
+      powerup.image = this.imageLibrary.getImage("images/extend_powerup.png")
 
       powerups.push(powerup)
     }
@@ -98,6 +100,8 @@ window.Pong.Game = (function() {
       paddle.color = paddleData[i].color;
       paddle.width = paddleData[i].width;
       paddle.height = paddleData[i].height;
+      paddle.paddle_body = this.imageLibrary.getImage("images/paddle_body.png")
+      paddle.paddle_ends = this.imageLibrary.getImage("images/paddle_ends.png")
 
       paddles.push(paddle);
     }
@@ -110,6 +114,7 @@ window.Pong.Game = (function() {
     ball.x = ballData.x
     ball.y = ballData.y
     ball.radius = ballData.radius
+    ball.image = this.imageLibrary.getImage("images/ball.png")
     return ball
   }
 

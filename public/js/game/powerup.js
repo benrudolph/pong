@@ -7,6 +7,7 @@ window.Pong.Powerup = (function() {
     this.width = 0
     this.height = 0
     this.color = "FF00FF"
+    this.image = null
   }
 
   Powerup.TYPE = {
@@ -15,9 +16,13 @@ window.Pong.Powerup = (function() {
 
   Powerup.prototype.draw = function() {
     var context = this.canvas.getContext("2d")
-    context.fillStyle = this.color
-    context.strokeStyle = "FFFFFF"
-    context.fillRect(this.x, this.y, this.width, this.height)
+    if (this.image && this.image.loaded) {
+      context.drawImage(this.image, this.x, this.y, this.width, this.height)
+    } else {
+      context.fillStyle = this.color
+      context.strokeStyle = "FFFFFF"
+      context.fillRect(this.x, this.y, this.width, this.height)
+    }
   }
 
   return Powerup;
