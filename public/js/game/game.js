@@ -6,7 +6,14 @@ window.Pong.Game = (function() {
   var SPACE_BAR = 32;
 
   var Game = function() {
-    this.socket = io.connect("/");
+    var port = window.location.port !== "" ? ":" + window.location.port : ""
+    this.socket= io.connect('http://' + window.location.hostname + port, {
+      'connect timeout': 500,
+      'reconnect': true,
+      'reconnection delay': 500,
+      'reopen delay': 500,
+      'max reconnection attempts': 10
+    });
     this.canvas = document.getElementById("pong")
     this.paddles = [];
     this.players = [];
