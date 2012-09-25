@@ -2,6 +2,7 @@ var assert = require("assert")
 var should = require("should")
 var PowerupArray = require("../lib/powerup_array.js")
 var Powerup = require("../lib/powerup.js")
+var Ball = require("../lib/ball.js")
 
 describe("PowerupArray", function() {
 
@@ -36,5 +37,23 @@ describe("PowerupArray", function() {
       }
     })
 
+  })
+})
+
+describe("Ball", function() {
+  var grid = { width: 500, height: 500 }
+  var ball = new Ball(grid)
+
+  ball.x = 10
+  ball.y = 10
+  ball.x_velocity = 5
+  ball.y_velocity = 0
+
+  describe("#move", function() {
+    it("should move ball", function() {
+      ball.move()
+      should.equal(ball.x, 15)
+      should.equal(ball.y, 10)
+    })
   })
 })
