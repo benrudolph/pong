@@ -3,6 +3,8 @@ var should = require("should")
 var PowerupArray = require("../lib/powerup_array.js")
 var Powerup = require("../lib/powerup.js")
 var Ball = require("../lib/ball.js")
+var Player = require("../lib/player.js")
+var Paddle = require("../lib/paddle.js")
 
 describe("PowerupArray", function() {
 

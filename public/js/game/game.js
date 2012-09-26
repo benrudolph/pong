@@ -1,7 +1,9 @@
 window.Pong.Game = (function() {
   var FPS = 30;
 
+  var KEY_LEFT = 37;
   var KEY_UP = 38;
+  var KEY_RIGHT = 39;
   var KEY_DOWN = 40;
   var SPACE_BAR = 32;
 
@@ -136,7 +138,7 @@ window.Pong.Game = (function() {
     // TODO: Put this in a player.deserialize method
     for (var i = 0; i < playerData.length; i++) {
       player = new Pong.Player(playerData[i].playerId);
-      player.score = playerData[i].score;
+      player.life = playerData[i].life;
       player.color = playerData[i].color;
       players.push(player);
     }
@@ -161,6 +163,20 @@ window.Pong.Game = (function() {
           direction: Pong.Paddle.DIRECTION.DOWN
         });
         break;
+      case KEY_LEFT:
+        e.preventDefault();
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Pong.Paddle.DIRECTION.LEFT
+        });
+        break
+      case KEY_RIGHT:
+        e.preventDefault();
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Pong.Paddle.DIRECTION.RIGHT
+        });
+        break
       case SPACE_BAR:
         e.preventDefault();
         this.socket.emit("start", {})

@@ -18,7 +18,7 @@ window.ImageLibrary = (function() {
       img.onload = function() {
         this.loaded = true
       }
-      this.images[sources[i]] = img
+      this.images[this.sources[i]] = img
     }
   }
   return ImageLibrary

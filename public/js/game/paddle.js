@@ -6,14 +6,15 @@ window.Pong.Paddle = (function() {
     this.color = "FFFFFF"
     this.width = 0
     this.height = 0
+    this.side = 0
     this.x = 0
     this.paddle_body = null
     this.paddle_ends = null
   }
 
-  Paddle.DIRECTION = { UP: 0, DOWN: 1 }
+  Paddle.SIDE = { LEFT: 0, RIGHT: 1, UP: 2, DOWN: 3}
 
-  Paddle.SIDE = { LEFT: 0, RIGHT: 1 }
+  Paddle.DIRECTION = Paddle.SIDE
 
   Paddle.BODY_IMG_HEIGHT = 10
 
@@ -25,7 +26,7 @@ window.Pong.Paddle = (function() {
 
   Paddle.prototype.draw = function() {
     var context = this.canvas.getContext("2d")
-    if (this.paddle_body && this.paddle_body.loaded && this.paddle_ends && this.paddle_ends.loaded) {
+    /*if (this.paddle_body && this.paddle_body.loaded && this.paddle_ends && this.paddle_ends.loaded) {
       var paddleEndStartX, paddleEndStartY = 0;
       var paddleBodyStartX, paddleBodyStartY = 0;
       switch (this.x) {
@@ -44,11 +45,14 @@ window.Pong.Paddle = (function() {
           20, this.x, this.y + this.height - Paddle.END_IMG_HEIGHT, Paddle.END_IMG_WIDTH,
           Paddle.END_IMG_HEIGHT)
       this.drawBody(context, this.height - (2 * Paddle.END_IMG_HEIGHT), paddleBodyStartX, paddleBodyStartY)
-    } else {
+    } else {*/
       context.fillStyle = this.color;
       context.strokeStyle = this.color;
-      context.fillRect(this.x, this.y, this.width, this.height);
-    }
+      //if (this.side === Paddle.SIDE.LEFT || this.side === Paddle.SIDE.RIGHT)
+        context.fillRect(this.x, this.y, this.width, this.height);
+      //if (this.side === Paddle.SIDE.UP || this.side === Paddle.SIDE.DOWN)
+       // context.fillRect(this.x, this.y, this.height, this.width);
+    //}
   };
 
   Paddle.prototype.drawBody = function(context, bodyLength, startx, starty) {
