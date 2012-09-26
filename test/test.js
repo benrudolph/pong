@@ -59,3 +59,18 @@ describe("Ball", function() {
     })
   })
 })
+
+describe("Paddle", function() {
+  var grid = { width: 500, height: 500 }
+  var player = new Player(1)
+  var paddle = new Paddle(player, grid, Paddle.SIDE.UP)
+
+  describe("#calculatePertubation", function() {
+    it("should calculate how much to offset velocity by on hit", function() {
+      var pert = paddle.calculatePertubation(10, 15, 40)
+      should.equal(1.25, pert)
+      pert = paddle.calculatePertubation(10, 5, 40)
+      should.equal(-1.25, pert)
+    })
+  })
+})
